@@ -40,7 +40,7 @@ export default function Hero() {
               </button>
             </div>
 
-            <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+            <div className="grid grid-cols-3 gap-4 text-center">
               <div className="rounded-3xl bg-white/10 p-6">
                 <p className="text-3xl font-bold text-gold mb-2">24</p>
                 <p className="text-sm text-white/80">Months Duration</p>

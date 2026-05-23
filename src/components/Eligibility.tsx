@@ -26,8 +26,8 @@ export default function Eligibility() {
 
             <div className="space-y-6">
               <div className="flex items-start">
-                <div className="w-8 h-8 bg-gold rounded-full flex items-center justify-center mr-4 mt-1">
-                  <span className="text-navy font-bold">1</span>
+                <div className="w-8 h-8 flex items-center justify-center mr-4 mt-1">
+                  <span className="text-white font-bold">1</span>
                 </div>
                 <div>
                   <h4 className="font-semibold text-lg mb-2">Bachelor's Degree</h4>
@@ -36,8 +36,8 @@ export default function Eligibility() {
               </div>
 
               <div className="flex items-start">
-                <div className="w-8 h-8 bg-gold rounded-full flex items-center justify-center mr-4 mt-1">
-                  <span className="text-navy font-bold">2</span>
+                <div className="w-8 h-8 flex items-center justify-center mr-4 mt-1">
+                  <span className="text-white font-bold">2</span>
                 </div>
                 <div>
                   <h4 className="font-semibold text-lg mb-2">Work Experience</h4>

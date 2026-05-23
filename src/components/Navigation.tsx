@@ -63,7 +63,7 @@ export default function Navigation() {
           {/* Mobile Menu Button */}
           <button
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-            className="md:hidden text-navy"
+            className="md:hidden text-white focus:outline-none"
             aria-label="Toggle menu"
           >
             <svg
@@ -90,13 +90,13 @@ export default function Navigation() {
             <div className="flex flex-col space-y-4 pt-4">
               <button
                 onClick={() => scrollToSection('features')}
-                className="text-navy hover:text-gold font-medium text-left"
+                className="text-white hover:text-gold font-medium text-left"
               >
                 Features
               </button>
               <button
                 onClick={() => scrollToSection('eligibility')}
-                className="text-navy hover:text-gold font-medium text-left"
+                className="text-white hover:text-gold font-medium text-left"
               >
                 Eligibility
               </button>
