@@ -1,27 +1,8 @@
 'use client';
 
-import { useEffect, useState } from 'react';
 import { FaGraduationCap, FaTrophy, FaCalendarAlt, FaMoneyBillWave, FaChartLine, FaCogs } from 'react-icons/fa';
 
 export default function Features() {
-  const [isVisible, setIsVisible] = useState(false);
-
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          setIsVisible(true);
-        }
-      },
-      { threshold: 0.1 }
-    );
-
-    const section = document.getElementById('features');
-    if (section) observer.observe(section);
-
-    return () => observer.disconnect();
-  }, []);
-
   const features = [
     {
       icon: <FaGraduationCap />,
@@ -59,14 +40,14 @@ export default function Features() {
   ];
 
   return (
-    <section id="features" className="py-20 bg-gray-50">
+    <section id="features" className="py-20 bg-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-16">
           <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-navy mb-4">
-            Program <span className="text-gradient">Features</span>
+            Program <span className="text-gold">Features</span>
           </h2>
-          <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-            Experience a cutting-edge MBA program designed for the AI-driven business landscape
+          <p className="text-xl text-navy/70 max-w-3xl mx-auto">
+            Experience a premium MBA program designed for the AI-driven business landscape.
           </p>
         </div>
 
@@ -74,16 +55,13 @@ export default function Features() {
           {features.map((feature, index) => (
             <div
               key={index}
-              className={`bg-white rounded-xl p-8 shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2 border border-gray-100 ${
-                isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
-              }`}
-              style={{ transitionDelay: `${index * 100}ms` }}
+              className="bg-white rounded-3xl p-8 shadow-lg border border-navy border-opacity-10"
             >
-              <div className="text-4xl mb-4" style={{ color: 'gold' }}>{feature.icon}</div>
+              <div className="text-4xl mb-4 text-gold">{feature.icon}</div>
               <h3 className="text-xl font-bold text-navy mb-3">
                 {feature.title}
               </h3>
-              <p className="text-gray-600 leading-relaxed">
+              <p className="text-navy/70 leading-relaxed">
                 {feature.description}
               </p>
             </div>
@@ -94,8 +72,8 @@ export default function Features() {
           <h3 className="text-2xl font-bold text-navy">
             Specialization Options
           </h3>
-          <p className="text-gray-600 mt-2">
-            Choose from three specialized tracks to tailor your MBA to your career goals
+          <p className="text-navy/70 mt-2">
+            Choose from three specialized tracks to tailor your MBA to your career goals.
           </p>
         </div>
 
@@ -103,16 +81,13 @@ export default function Features() {
           {specializations.map((spec, index) => (
             <div
               key={index}
-              className={`bg-white rounded-xl p-8 shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2 border border-gray-100 ${
-                isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
-              }`}
-              style={{ transitionDelay: `${(index + 3) * 100}ms` }}
+              className="bg-white rounded-3xl p-8 shadow-lg border border-navy border-opacity-10"
             >
-              <div className="text-4xl mb-4" style={{ color: 'gold' }}>{spec.icon}</div>
+              <div className="text-4xl mb-4 text-gold">{spec.icon}</div>
               <h3 className="text-xl font-bold text-navy mb-3">
                 {spec.title}
               </h3>
-              <p className="text-gray-600 leading-relaxed">
+              <p className="text-navy/70 leading-relaxed">
                 {spec.description}
               </p>
             </div>

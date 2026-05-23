@@ -17,24 +17,24 @@ export default function Navigation() {
   const scrollToSection = (sectionId: string) => {
     const element = document.getElementById(sectionId);
     if (element) {
-      element.scrollIntoView({ behavior: 'smooth' });
+      element.scrollIntoView();
       setIsMobileMenuOpen(false);
     }
   };
 
   return (
     <nav
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
+      className={`fixed top-0 left-0 right-0 z-50 ${
         isScrolled
-          ? 'bg-white shadow-lg py-3'
+          ? 'bg-navy shadow-lg py-3'
           : 'bg-transparent py-5'
       }`}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between">
           <div className="flex items-center">
-            <h1 className="text-xl sm:text-2xl font-bold text-black">
-              IIM <span className="text-gradient">Sirmaur</span>
+            <h1 className="text-xl sm:text-2xl font-bold text-white">
+              IIM <span className="text-gold">Sirmaur</span>
             </h1>
           </div>
 
@@ -42,19 +42,19 @@ export default function Navigation() {
           <div className="hidden md:flex items-center space-x-8">
             <button
               onClick={() => scrollToSection('features')}
-              className="text-yellow-500 hover:text-gold transition-colors font-medium"
+              className="text-gold hover:text-gold font-medium"
             >
               Features
             </button>
             <button
               onClick={() => scrollToSection('eligibility')}
-              className="text-yellow-500 hover:text-gold transition-colors font-medium"
+              className="text-gold hover:text-gold font-medium"
             >
               Eligibility
             </button>
             <button
               onClick={() => scrollToSection('apply')}
-              className="bg-gradient-gold text-black px-6 py-2 rounded-full font-semibold hover:opacity-90 transition-opacity"
+              className="bg-gold text-navy px-6 py-2 rounded-full font-semibold"
             >
               Apply Now
             </button>
@@ -63,7 +63,7 @@ export default function Navigation() {
           {/* Mobile Menu Button */}
           <button
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-            className="md:hidden text-black"
+            className="md:hidden text-navy"
             aria-label="Toggle menu"
           >
             <svg
@@ -86,23 +86,23 @@ export default function Navigation() {
 
         {/* Mobile Menu */}
         {isMobileMenuOpen && (
-          <div className="md:hidden mt-4 pb-4 border-t border-gray-200">
+          <div className="md:hidden mt-4 pb-4 border-t border-navy border-opacity-10">
             <div className="flex flex-col space-y-4 pt-4">
               <button
                 onClick={() => scrollToSection('features')}
-                className="text-black hover:text-gold transition-colors font-medium text-left"
+                className="text-navy hover:text-gold font-medium text-left"
               >
                 Features
               </button>
               <button
                 onClick={() => scrollToSection('eligibility')}
-                className="text-black hover:text-gold transition-colors font-medium text-left"
+                className="text-navy hover:text-gold font-medium text-left"
               >
                 Eligibility
               </button>
               <button
                 onClick={() => scrollToSection('apply')}
-                className="bg-gradient-gold text-black px-6 py-2 rounded-full font-semibold hover:opacity-90 transition-opacity text-center"
+                className="bg-gold text-navy px-6 py-2 rounded-full font-semibold text-center"
               >
                 Apply Now
               </button>

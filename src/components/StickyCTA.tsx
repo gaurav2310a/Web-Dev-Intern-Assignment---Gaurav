@@ -30,31 +30,31 @@ export default function StickyCTA() {
   const scrollToSection = (sectionId: string) => {
     const element = document.getElementById(sectionId);
     if (element) {
-      element.scrollIntoView({ behavior: 'smooth' });
+      element.scrollIntoView();
     }
   };
 
   if (!isVisible) return null;
 
   return (
-    <div className="fixed bottom-0 left-0 right-0 z-40 bg-white shadow-2xl border-t border-gray-200 py-4 px-4">
+    <div className="fixed bottom-0 left-0 right-0 z-40 bg-white shadow-2xl border-t border-navy border-opacity-10 py-4 px-4">
       <div className="max-w-7xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4">
         <div className="text-center sm:text-left">
           <p className="text-navy font-semibold">
             Application Deadline: <span className="text-gold">31st July 2026</span>
           </p>
-          <p className="text-gray-600 text-sm">Limited seats available</p>
+          <p className="text-navy/70 text-sm">Limited seats available</p>
         </div>
         <div className="flex gap-3">
           <button
             onClick={() => scrollToSection('apply')}
-            className="bg-gradient-gold text-white px-6 py-3 rounded-full font-semibold hover:opacity-90 transition-opacity whitespace-nowrap"
+            className="bg-gold text-navy px-6 py-3 rounded-full font-semibold whitespace-nowrap"
           >
             Apply Now
           </button>
           <a
             href="tel:+919876543210"
-            className="border-2 border-navy text-navy px-6 py-3 rounded-full font-semibold hover:bg-navy hover:text-white transition-all whitespace-nowrap"
+            className="border-2 border-navy text-navy px-6 py-3 rounded-full font-semibold whitespace-nowrap"
           >
             Call Us
           </a>

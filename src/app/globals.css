@@ -4,47 +4,38 @@
   --background: #ffffff;
   --foreground: #0a192f;
   --navy: #0a192f;
-  --navy-light: #112240;
   --gold: #d4af37;
-  --gold-light: #f4d03f;
   --white: #ffffff;
-}
-
-/* @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --color-navy: var(--navy);
-  --color-navy-light: var(--navy-light);
-  --color-gold: var(--gold);
-  --color-gold-light: var(--gold-light);
-  --color-white: var(--white);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-} */
-
-* {
-  scroll-behavior: smooth;
 }
 
 body {
   background: var(--background);
-  color: var(--foreground);
+  color: var(--navy);
   font-family: var(--font-geist-sans), Arial, Helvetica, sans-serif;
 }
 
 @layer utilities {
-  .text-gradient {
-    background: linear-gradient(135deg, var(--gold) 0%, var(--gold-light) 100%);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
+  .bg-navy {
+    background: var(--navy);
   }
-  
-  .bg-gradient-navy {
-    background: linear-gradient(135deg, var(--navy) 0%, var(--navy-light) 100%);
+
+  .text-navy {
+    color: var(--navy);
   }
-  
-  .bg-gradient-gold {
-    background: linear-gradient(135deg, var(--gold) 0%, var(--gold-light) 100%);
+
+  .border-navy {
+    border-color: var(--navy);
+  }
+
+  .bg-gold {
+    background: var(--gold);
+  }
+
+  .text-gold {
+    color: var(--gold);
+  }
+
+  .border-gold {
+    border-color: var(--gold);
   }
 }

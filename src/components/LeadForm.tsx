@@ -1,9 +1,8 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 
 export default function LeadForm() {
-  const [isVisible, setIsVisible] = useState(false);
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -14,22 +13,6 @@ export default function LeadForm() {
   const [errors, setErrors] = useState<Record<string, string>>({});
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
-
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          setIsVisible(true);
-        }
-      },
-      { threshold: 0.1 }
-    );
-
-    const section = document.getElementById('apply');
-    if (section) observer.observe(section);
-
-    return () => observer.disconnect();
-  }, []);
 
   const validateForm = () => {
     const newErrors: Record<string, string> = {};
@@ -66,20 +49,13 @@ export default function LeadForm() {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    
     if (!validateForm()) {
       return;
     }
-
     setIsSubmitting(true);
-
-    // Simulate API call
     await new Promise(resolve => setTimeout(resolve, 1500));
-
     setIsSubmitting(false);
     setIsSubmitted(true);
-    
-    // Reset form after successful submission
     setFormData({
       name: '',
       email: '',
@@ -92,7 +68,6 @@ export default function LeadForm() {
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
     const { name, value } = e.target;
     setFormData(prev => ({ ...prev, [name]: value }));
-    // Clear error when user starts typing
     if (errors[name]) {
       setErrors(prev => ({ ...prev, [name]: '' }));
     }
@@ -100,25 +75,21 @@ export default function LeadForm() {
 
   if (isSubmitted) {
     return (
-      <section id="apply" className="py-20 bg-gray-50">
+      <section id="apply" className="py-20 bg-white">
         <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div
-            className={`bg-white rounded-2xl p-8 shadow-xl text-center transform transition-all duration-1000 ${
-              isVisible ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'
-            }`}
-          >
-            <div className="w-20 h-20 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-6">
-              <svg className="w-10 h-10 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2}  />
+          <div className="bg-white rounded-3xl p-8 shadow-xl text-center border border-navy border-opacity-10">
+            <div className="w-20 h-20 bg-gold rounded-full flex items-center justify-center mx-auto mb-6">
+              <svg className="w-10 h-10 text-navy" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2}>
+                <path d="M9 12l2 2 4-4" />
               </svg>
             </div>
             <h3 className="text-3xl font-bold text-navy mb-4">Thank You!</h3>
-            <p className="text-xl text-gray-600 mb-6">
+            <p className="text-xl text-navy/70 mb-6">
               Your application has been submitted successfully. Our team will contact you shortly.
             </p>
             <button
               onClick={() => setIsSubmitted(false)}
-              className="bg-gradient-gold text-white px-8 py-3 rounded-full font-semibold hover:opacity-90 transition-opacity"
+              className="bg-gold text-navy px-8 py-3 rounded-full font-semibold"
             >
               Submit Another Application
             </button>
@@ -129,22 +100,18 @@ export default function LeadForm() {
   }
 
   return (
-    <section id="apply" className="py-20 bg-gray-50">
+    <section id="apply" className="py-20 bg-white">
       <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-12">
           <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-navy mb-4">
-            Apply <span className="text-gradient">Now</span>
+            Apply <span className="text-gold">Now</span>
           </h2>
-          <p className="text-xl text-gray-600">
-            Take the first step towards your AI-powered MBA journey
+          <p className="text-xl text-navy/70">
+            Take the first step towards your AI-powered MBA journey.
           </p>
         </div>
 
-        <div
-          className={`bg-white rounded-2xl p-8 shadow-xl transform transition-all duration-1000 ${
-            isVisible ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'
-          }`}
-        >
+        <div className="bg-white rounded-3xl p-8 shadow-xl border border-navy border-opacity-10">
           <form onSubmit={handleSubmit} className="space-y-6">
             <div>
               <label htmlFor="name" className="block text-sm font-semibold text-navy mb-2">
@@ -157,14 +124,14 @@ export default function LeadForm() {
                 value={formData.name}
                 onChange={handleChange}
                 className={`w-full px-4 py-3 rounded-lg border ${
-                  errors.name ? 'border-red-500' : 'border-gray-300'
-                } focus:ring-2 focus:ring-gold focus:border-transparent outline-none transition-all`}
+                  errors.name ? 'border-gold' : 'border-navy border-opacity-10'
+                } focus:ring-2 focus:ring-gold focus:border-transparent outline-none`}
                 placeholder="Enter your full name"
                 aria-invalid={errors.name ? 'true' : 'false'}
                 aria-describedby={errors.name ? 'name-error' : undefined}
               />
               {errors.name && (
-                <p id="name-error" className="text-red-500 text-sm mt-1" role="alert">
+                <p id="name-error" className="text-gold text-sm mt-1" role="alert">
                   {errors.name}
                 </p>
               )}
@@ -181,14 +148,14 @@ export default function LeadForm() {
                 value={formData.email}
                 onChange={handleChange}
                 className={`w-full px-4 py-3 rounded-lg border ${
-                  errors.email ? 'border-red-500' : 'border-gray-300'
-                } focus:ring-2 focus:ring-gold focus:border-transparent outline-none transition-all`}
+                  errors.email ? 'border-gold' : 'border-navy border-opacity-10'
+                } focus:ring-2 focus:ring-gold focus:border-transparent outline-none`}
                 placeholder="Enter your email address"
                 aria-invalid={errors.email ? 'true' : 'false'}
                 aria-describedby={errors.email ? 'email-error' : undefined}
               />
               {errors.email && (
-                <p id="email-error" className="text-red-500 text-sm mt-1" role="alert">
+                <p id="email-error" className="text-gold text-sm mt-1" role="alert">
                   {errors.email}
                 </p>
               )}
@@ -205,14 +172,14 @@ export default function LeadForm() {
                 value={formData.phone}
                 onChange={handleChange}
                 className={`w-full px-4 py-3 rounded-lg border ${
-                  errors.phone ? 'border-red-500' : 'border-gray-300'
-                } focus:ring-2 focus:ring-gold focus:border-transparent outline-none transition-all`}
+                  errors.phone ? 'border-gold' : 'border-navy border-opacity-10'
+                } focus:ring-2 focus:ring-gold focus:border-transparent outline-none`}
                 placeholder="Enter your phone number"
                 aria-invalid={errors.phone ? 'true' : 'false'}
                 aria-describedby={errors.phone ? 'phone-error' : undefined}
               />
               {errors.phone && (
-                <p id="phone-error" className="text-red-500 text-sm mt-1" role="alert">
+                <p id="phone-error" className="text-gold text-sm mt-1" role="alert">
                   {errors.phone}
                 </p>
               )}
@@ -229,14 +196,14 @@ export default function LeadForm() {
                 value={formData.designation}
                 onChange={handleChange}
                 className={`w-full px-4 py-3 rounded-lg border ${
-                  errors.designation ? 'border-red-500' : 'border-gray-300'
-                } focus:ring-2 focus:ring-gold focus:border-transparent outline-none transition-all`}
+                  errors.designation ? 'border-gold' : 'border-navy border-opacity-10'
+                } focus:ring-2 focus:ring-gold focus:border-transparent outline-none`}
                 placeholder="Enter your current designation"
                 aria-invalid={errors.designation ? 'true' : 'false'}
                 aria-describedby={errors.designation ? 'designation-error' : undefined}
               />
               {errors.designation && (
-                <p id="designation-error" className="text-red-500 text-sm mt-1" role="alert">
+                <p id="designation-error" className="text-gold text-sm mt-1" role="alert">
                   {errors.designation}
                 </p>
               )}
@@ -252,8 +219,8 @@ export default function LeadForm() {
                 value={formData.experience}
                 onChange={handleChange}
                 className={`w-full px-4 py-3 rounded-lg border ${
-                  errors.experience ? 'border-red-500' : 'border-gray-300'
-                } focus:ring-2 focus:ring-gold focus:border-transparent outline-none transition-all bg-white`}
+                  errors.experience ? 'border-gold' : 'border-navy border-opacity-10'
+                } focus:ring-2 focus:ring-gold focus:border-transparent outline-none bg-white`}
                 aria-invalid={errors.experience ? 'true' : 'false'}
                 aria-describedby={errors.experience ? 'experience-error' : undefined}
               >
@@ -265,7 +232,7 @@ export default function LeadForm() {
                 <option value="10+">10+ years</option>
               </select>
               {errors.experience && (
-                <p id="experience-error" className="text-red-500 text-sm mt-1" role="alert">
+                <p id="experience-error" className="text-gold text-sm mt-1" role="alert">
                   {errors.experience}
                 </p>
               )}
@@ -274,12 +241,12 @@ export default function LeadForm() {
             <button
               type="submit"
               disabled={isSubmitting}
-              className="w-full bg-gradient-gold text-white py-4 rounded-lg font-semibold text-lg hover:opacity-90 transition-all disabled:opacity-50 disabled:cursor-not-allowed"
+              className="w-full bg-gold text-navy py-4 rounded-lg font-semibold text-lg disabled:opacity-50 disabled:cursor-not-allowed"
             >
               {isSubmitting ? 'Submitting...' : 'Submit Application'}
             </button>
 
-            <p className="text-center text-sm text-gray-500">
+            <p className="text-center text-sm text-navy/70">
               By submitting this form, you agree to our terms and privacy policy.
             </p>
           </form>
